@@ -15,6 +15,8 @@ public class PostUserTest extends TestBase {
     public void generateTestData(){
         fixedUser = new User("Grace kelly", "gc@schools.com", "abcd", "false");
         validUser = new User("Tom Cruise", "tc@schools.com", "1234", "true");
+
+        registerUserRequest(SPEC, fixedUser);
     }
 
     @AfterClass
@@ -32,7 +34,7 @@ public class PostUserTest extends TestBase {
     }
 
     @Test
-    public void shouldReturnFailMesageAnd400Status(){
+    public void shouldReturnFailMessageAnd400Status(){
         registerUserRequest(SPEC, fixedUser)
                 .then()
                 .assertThat()
