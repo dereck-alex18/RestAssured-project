@@ -1,6 +1,5 @@
 package models;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import org.json.simple.JSONObject;
 
 public class Product {
@@ -10,7 +9,7 @@ public class Product {
     private String quantidade;
     private String productId;
 
-    public Product(String name, String price, String descricao, String quantidade){
+    public Product(String name, String price, String descricao, String quantidade) {
         this.name = name;
         this.price = price;
         this.descricao = descricao;
@@ -25,7 +24,7 @@ public class Product {
         return this.productId;
     }
 
-    public String getProductInformation(){
+    public String getProductInformation() {
         JSONObject productJsonRepresentation = new JSONObject();
 
         productJsonRepresentation.put("nome", this.name);

@@ -1,3 +1,4 @@
+import helpers.Constants;
 import io.restassured.response.Response;
 import models.User;
 import org.testng.annotations.AfterClass;
@@ -6,13 +7,13 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 import static requests.UserEndpoint.*;
 
-public class PostLoginTests extends TestBase{
+public class PostLoginTests extends TestBase {
 
     private User validUser;
     private User invalidUser;
 
     @BeforeClass
-    public void generateTestData(){
+    public void generateTestData() {
         validUser = new User("Mari", "mari@email.com", "123abc", "true");
         registerUserRequest(SPEC, validUser);
         invalidUser = new User("Mari", "mari@email.com", "asdas", "true");
@@ -24,7 +25,7 @@ public class PostLoginTests extends TestBase{
     }
 
     @Test
-    public void shouldReturnSuccessMessageAuthTokenAndStatus200(){
+    public void shouldReturnSuccessMessageAuthTokenAndStatus200() {
         Response loginSuccessResponse = authenticateUserRequest(SPEC, validUser);
         loginSuccessResponse.
             then().
@@ -36,7 +37,7 @@ public class PostLoginTests extends TestBase{
     }
 
     @Test
-    public void shouldReturnFailureMessageAndStatus401(){
+    public void shouldReturnFailureMessageAndStatus401() {
 
         Response loginFailureResponse = authenticateUserRequest(SPEC, invalidUser);
         loginFailureResponse.
