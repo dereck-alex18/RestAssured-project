@@ -4,15 +4,12 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import models.Product;
 import models.User;
-import org.json.simple.JSONObject;
-
-import javax.jws.soap.SOAPBinding;
 
 import static io.restassured.RestAssured.given;
 
 public class ProductEndpoint extends RequestBase {
 
-    public static Response postProductRequest(RequestSpecification spec, User user, Product product){
+    public static Response postProductRequest(RequestSpecification spec, User user, Product product) {
 
         Response productRequest =
                 given()
@@ -29,7 +26,7 @@ public class ProductEndpoint extends RequestBase {
         return productRequest;
     }
 
-    public static  Response deleteProductRequest(RequestSpecification spec, User user, Product product){
+    public static  Response deleteProductRequest(RequestSpecification spec, User user, Product product) {
        Response productRequest =
             given()
                 .spec(spec)
@@ -38,7 +35,7 @@ public class ProductEndpoint extends RequestBase {
             .and()
                 .body(product.getProductInformation())
             .when()
-                .delete("produtos/"+product.getIdProduct());
+                .delete("produtos/" + product.getIdProduct());
 
             return productRequest;
     }
