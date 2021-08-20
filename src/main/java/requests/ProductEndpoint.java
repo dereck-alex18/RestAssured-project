@@ -26,6 +26,15 @@ public class ProductEndpoint extends RequestBase {
         return productRequest;
     }
 
+    public static Response getProductRequest(RequestSpecification spec, String query) {
+        Response getProductResponse =
+                given().
+                        spec(spec)
+                .when().
+                        get("produtos" + query);
+        return getProductResponse;
+    }
+
     public static  Response deleteProductRequest(RequestSpecification spec, User user, Product product) {
        Response productRequest =
             given()
