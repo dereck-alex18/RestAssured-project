@@ -20,9 +20,9 @@ public class PostProductTest extends TestBase {
         notAdminUser = new User("Pedro", "pedro@test.com", "1234", "false");
         userNotAuthenticated = new User("Joana", "joana@test.com", "1234", "true");
 
-        product = new Product("iPhone 11", "4000", "8gb ram, 128gb storage", "100");
-        product2 = new Product("Moto G6", "2000", "8gb ram, 128gb storage", "40");
-        fixedProduct = new Product("Samsung Galaxy s20", "3800", "8gb ram, 128gb storage", "100");
+        product = new Product("iPhone 12", 4000, "8gb ram, 128gb storage", 100);
+        product2 = new Product("Moto G6", 2000, "8gb ram, 128gb storage", 40);
+        fixedProduct = new Product("Samsung Galaxy s20", 3800, "8gb ram, 128gb storage", 100);
 
         registerUserRequest(SPEC, user);
         registerUserRequest(SPEC, notAdminUser);

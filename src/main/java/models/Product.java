@@ -3,13 +3,13 @@ package models;
 import org.json.simple.JSONObject;
 
 public class Product {
-    private String name;
-    private String price;
-    private String descricao;
-    private String quantidade;
-    private String productId;
+    public String name;
+    public int price;
+    public String descricao;
+    public int quantidade;
+    public String productId;
 
-    public Product(String name, String price, String descricao, String quantidade) {
+    public Product(String name, int price, String descricao, int quantidade) {
         this.name = name;
         this.price = price;
         this.descricao = descricao;
@@ -30,7 +30,7 @@ public class Product {
         productJsonRepresentation.put("nome", this.name);
         productJsonRepresentation.put("preco", this.price);
         productJsonRepresentation.put("descricao", this.descricao);
-        productJsonRepresentation.put("quantidade", this.price);
+        productJsonRepresentation.put("quantidade", this.quantidade);
 
         return productJsonRepresentation.toJSONString();
     }

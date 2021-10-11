@@ -21,9 +21,18 @@ public class ProductEndpoint extends RequestBase {
                 .when()
                     .post("produtos");
 
-        product.setProductId(getValueFromResponse(productRequest, "_id"));
+                product.setProductId(getValueFromResponse(productRequest, "_id"));
 
         return productRequest;
+    }
+
+    public static Response getProductRequest(RequestSpecification spec, String query) {
+        Response getProductResponse =
+                given().
+                        spec(spec)
+                .when().
+                        get("produtos" + query);
+        return getProductResponse;
     }
 
     public static  Response deleteProductRequest(RequestSpecification spec, User user, Product product) {
@@ -36,7 +45,6 @@ public class ProductEndpoint extends RequestBase {
                 .body(product.getProductInformation())
             .when()
                 .delete("produtos/" + product.getIdProduct());
-
-            return productRequest;
+       return productRequest;
     }
 }
