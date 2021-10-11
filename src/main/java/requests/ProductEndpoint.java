@@ -21,7 +21,7 @@ public class ProductEndpoint extends RequestBase {
                 .when()
                     .post("produtos");
 
-        product.setProductId(getValueFromResponse(productRequest, "_id"));
+                product.setProductId(getValueFromResponse(productRequest, "_id"));
 
         return productRequest;
     }
@@ -45,7 +45,6 @@ public class ProductEndpoint extends RequestBase {
                 .body(product.getProductInformation())
             .when()
                 .delete("produtos/" + product.getIdProduct());
-
-            return productRequest;
+       return productRequest;
     }
 }

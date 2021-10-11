@@ -26,15 +26,13 @@ public class GetProductTest extends TestBase {
         postProductRequest(SPEC, user, product);
         product2 = new Product ("iPhone 13", 4000, "16gb ram, 128gb storage", 500);
         postProductRequest(SPEC, user, product2);
-        product2.setProductId("1");
-        product.setProductId("2");
     }
 
     @AfterClass
     public void removeTestData() {
-        deleteUserRequest(SPEC, user);
         deleteProductRequest(SPEC, user, product);
         deleteProductRequest(SPEC, user, product2);
+        deleteUserRequest(SPEC, user);
     }
 
 
