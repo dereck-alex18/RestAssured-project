@@ -10,7 +10,6 @@ import static io.restassured.RestAssured.given;
 public class ProductEndpoint extends RequestBase {
 
     public static Response postProductRequest(RequestSpecification spec, User user, Product product) {
-
         Response productRequest =
                 given()
                     .spec(spec)
@@ -46,5 +45,18 @@ public class ProductEndpoint extends RequestBase {
             .when()
                 .delete("produtos/" + product.getIdProduct());
        return productRequest;
+    }
+
+    public static Response putProductRequest(RequestSpecification spec,  User user, Product product) {
+        Response putProductResponse =
+                 given()
+                     .spec(spec)
+                    .header("Content-Type","application/json")
+                    .header("Authorization", user.authToken)
+                .and()
+                    .body(product.getProductInformation())
+                .when()
+                    .put("produtos/" + product.getIdProduct());
+        return putProductResponse;
     }
 }

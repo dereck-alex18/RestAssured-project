@@ -33,12 +33,10 @@ public class PostLoginTests extends TestBase {
                 statusCode(200).
                 body("message", equalTo(Constants.MESSAGE_SUCCESS_LOGIN)).
                 body("authorization", notNullValue());
-
     }
 
     @Test
     public void shouldReturnFailureMessageAndStatus401() {
-
         Response loginFailureResponse = authenticateUserRequest(SPEC, invalidUser);
         loginFailureResponse.
             then().
