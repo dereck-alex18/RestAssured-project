@@ -61,4 +61,22 @@ public class UserEndpoint extends RequestBase {
                         delete("usuarios/" + user.userID);
         return deleteUserResponse;
     }
+
+    public static Response putUserRequest(RequestSpecification spec,  User user) {
+        JSONObject userJsonRepresentation = new JSONObject();
+        userJsonRepresentation.put("nome", user.name);
+        userJsonRepresentation.put("email", user.email);
+        userJsonRepresentation.put("password", user.password);
+        userJsonRepresentation.put("administrador", user.isAdmin);
+
+        Response putUserResponse =
+                given().
+                        spec(spec).
+                        header("Content-Type","application/json").
+                and().
+                        body(userJsonRepresentation.toJSONString()).
+                when().
+                        put("usuarios/" + user.userID);
+        return putUserResponse;
+    }
 }

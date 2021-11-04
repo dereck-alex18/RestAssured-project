@@ -55,7 +55,4 @@ public class GetProductTest extends TestBase {
                 statusCode(200).
                 body("quantidade", equalTo(totalProducts));
     }
-
-
-
 }
