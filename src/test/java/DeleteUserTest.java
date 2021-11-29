@@ -17,7 +17,7 @@ public class DeleteUserTest extends TestBase {
     }
 
     @Test
-    public void shouldRemoveUserReturnSuccessMessageAndStatus200() {
+    public void shouldRemoveUserReturnSuccessMessageAndStatus200ToUserDeletedSuccessfully() {
         Response deleteUserResponse = deleteUserRequest(SPEC, validUser);
         deleteUserResponse.
         then().

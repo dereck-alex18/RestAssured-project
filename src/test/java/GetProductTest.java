@@ -46,7 +46,7 @@ public class GetProductTest extends TestBase {
     }
 
     @Test(dataProvider = "product")
-    public void shouldReturnProductsAndStatus200(String query, int totalProducts) {
+    public void shouldReturnProductsAndStatus200ToListProducts(String query, int totalProducts) {
         Response getProductResponse = getProductRequest(SPEC, query);
         getProductResponse.
                 then().

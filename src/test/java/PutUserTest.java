@@ -28,7 +28,7 @@ public class PutUserTest extends TestBase {
     }
 
     @Test
-    public void shouldReturnSuccessMessageAndStatus200() {
+    public void shouldReturnSuccessMessageAndStatus200ToUpdateSuccessfull() {
         putUserRequest(SPEC, validUser).
                 then().
                 assertThat().
@@ -37,7 +37,7 @@ public class PutUserTest extends TestBase {
     }
 
     @Test
-    public void shouldReturnSuccessMessageAndStatus201() {
+    public void shouldReturnSuccessMessageAndStatus201ToRegistSuccessfully() {
         putUserRequest(SPEC, notRegisteredUser).
                 then().
                 assertThat().
@@ -46,7 +46,7 @@ public class PutUserTest extends TestBase {
     }
 
     @Test
-    public void shouldReturnErrorMessageAndStatus400() {
+    public void shouldReturnErrorMessageAndStatus400ToEmailAlreadyInUse() {
         putUserRequest(SPEC, validUser2).
                 then().
                 assertThat().
