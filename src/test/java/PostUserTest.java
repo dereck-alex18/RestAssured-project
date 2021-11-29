@@ -1,5 +1,4 @@
 import helpers.Constants;
-import io.restassured.response.Response;
 import models.User;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -21,6 +20,7 @@ public class PostUserTest extends TestBase {
     @AfterClass
     public void removeTestData(){
         deleteUserRequest(SPEC, validUser);
+        deleteUserRequest(SPEC, fixedUser);
     }
 
    @Test

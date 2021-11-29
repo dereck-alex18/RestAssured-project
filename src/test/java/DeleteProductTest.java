@@ -2,6 +2,7 @@ import helpers.Constants;
 import io.restassured.response.Response;
 import models.Product;
 import models.User;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
@@ -11,7 +12,7 @@ import static requests.UserEndpoint.*;
 public class DeleteProductTest extends TestBase {
 
     private User validUser, notAdminUser, userNotAuthenticated;
-    private Product validProduct, invalidProduct;
+    private Product validProduct;
 
 
     @BeforeClass
@@ -30,6 +31,13 @@ public class DeleteProductTest extends TestBase {
         registerUserRequest(SPEC, userNotAuthenticated);
         authenticateUserRequest(SPEC, userNotAuthenticated);
         userNotAuthenticated.setUserAuthToken("Token123");
+    }
+
+    @AfterClass
+    public void removeTestData() {
+        deleteUserRequest(SPEC, validUser);
+        deleteUserRequest(SPEC, notAdminUser);
+        deleteUserRequest(SPEC, userNotAuthenticated);
     }
 
     @Test

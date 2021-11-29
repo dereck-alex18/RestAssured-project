@@ -7,8 +7,7 @@ import org.testng.annotations.Test;
 
 import static org.hamcrest.Matchers.equalTo;
 import static requests.ProductEndpoint.*;
-import static requests.UserEndpoint.authenticateUserRequest;
-import static requests.UserEndpoint.registerUserRequest;
+import static requests.UserEndpoint.*;
 
 public class PutProductTest extends TestBase{
 
@@ -16,7 +15,7 @@ public class PutProductTest extends TestBase{
     private Product product, product2, product3;
 
     @BeforeClass
-    public void registerProduct(){
+    public void generateTestData(){
         user = new User("Alexander", "alex@test.com", "1234", "true");
         notAdminUser = new User("Pedro", "pedro@test.com", "1234", "false");
         userNotAuthenticated = new User("Joana", "joana@test.com", "1234", "true");
@@ -35,6 +34,9 @@ public class PutProductTest extends TestBase{
 
     @AfterClass
     public void deleteProduct(){
+        deleteUserRequest(SPEC, user);
+        deleteUserRequest(SPEC, notAdminUser);
+        deleteUserRequest(SPEC, userNotAuthenticated);
         deleteProductRequest(SPEC, user, product);
         deleteProductRequest(SPEC, user, product2);
         deleteProductRequest(SPEC, user, product3);
