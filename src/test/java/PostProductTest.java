@@ -15,7 +15,7 @@ public class PostProductTest extends TestBase {
     private Product product, product2, fixedProduct;
 
     @BeforeClass
-    public void registerProduct(){
+    public void generateTestData(){
         user = new User("Alexander", "alex@test.com", "1234", "true");
         notAdminUser = new User("Pedro", "pedro@test.com", "1234", "false");
         userNotAuthenticated = new User("Joana", "joana@test.com", "1234", "true");
@@ -35,6 +35,9 @@ public class PostProductTest extends TestBase {
 
     @AfterClass
     public void deleteProduct(){
+        deleteUserRequest(SPEC, user);
+        deleteUserRequest(SPEC, notAdminUser);
+        deleteUserRequest(SPEC, userNotAuthenticated);
         deleteProductRequest(SPEC, user, product);
     }
 

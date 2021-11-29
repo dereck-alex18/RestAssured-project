@@ -1,4 +1,3 @@
-import helpers.Constants;
 import io.restassured.response.Response;
 import models.Product;
 import models.User;

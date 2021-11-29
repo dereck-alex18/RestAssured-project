@@ -14,5 +14,4 @@ public class Constants {
     public static final String PUT_SUCCESS = "Registro alterado com sucesso";
     public static final String PUT_REGISTRATION_SUCCESS = "Cadastro realizado com sucesso";
     public static final String PUT_USER_REGISTRATION_FAIL = "Este email já está sendo usado";
-
 }

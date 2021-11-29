@@ -22,6 +22,7 @@ public class PostLoginTests extends TestBase {
     @AfterClass
     public void removeTestData(){
         deleteUserRequest(SPEC, validUser);
+        deleteUserRequest(SPEC, invalidUser);
     }
 
     @Test
