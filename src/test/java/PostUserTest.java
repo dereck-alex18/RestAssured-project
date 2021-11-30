@@ -24,7 +24,7 @@ public class PostUserTest extends TestBase {
     }
 
    @Test
-    public void shouldReturnSuccessfulMessageAnd201Status(){
+    public void shouldReturnSuccessfulMessageAnd201StatusToRegistSuccessfully(){
        registerUserRequest(SPEC, validUser)
            .then()
                .assertThat()
@@ -33,7 +33,7 @@ public class PostUserTest extends TestBase {
     }
 
     @Test
-    public void shouldReturnFailMessageAnd400Status(){
+    public void shouldReturnFailMessageAnd400StatusToAlreadyExistAUserWithThisName(){
         registerUserRequest(SPEC, fixedUser)
             .then()
                 .assertThat()

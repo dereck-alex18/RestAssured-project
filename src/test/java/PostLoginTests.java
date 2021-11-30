@@ -26,7 +26,7 @@ public class PostLoginTests extends TestBase {
     }
 
     @Test
-    public void shouldReturnSuccessMessageAuthTokenAndStatus200() {
+    public void shouldReturnSuccessMessageAuthTokenAndStatus200ToLoginSuccessfully() {
         Response loginSuccessResponse = authenticateUserRequest(SPEC, validUser);
         loginSuccessResponse.
             then().
@@ -37,7 +37,7 @@ public class PostLoginTests extends TestBase {
     }
 
     @Test
-    public void shouldReturnFailureMessageAndStatus401() {
+    public void shouldReturnFailureMessageAndStatus401ToInvalidEmailOrPassword() {
         Response loginFailureResponse = authenticateUserRequest(SPEC, invalidUser);
         loginFailureResponse.
             then().

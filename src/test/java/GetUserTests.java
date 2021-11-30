@@ -43,7 +43,7 @@ public class GetUserTests extends TestBase {
     }
 
     @Test(dataProvider = "usersData")
-    public void shouldReturnUsersAndStatus200(String query, int totalUsers) {
+    public void shouldReturnUsersAndStatus200ToListUsers(String query, int totalUsers) {
         Response getUserResponse = getUserRequest(SPEC, query);
         getUserResponse.
             then().

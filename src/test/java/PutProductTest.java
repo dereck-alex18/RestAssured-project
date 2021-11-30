@@ -43,7 +43,7 @@ public class PutProductTest extends TestBase{
     }
 
     @Test
-    public void shouldReturnSuccessAndStatus200() {
+    public void shouldReturnSuccessAndStatus200ToUpdateSuccessfully() {
         postProductRequest(SPEC, user, product);
         putProductRequest(SPEC, user, product).
             then().
@@ -53,7 +53,7 @@ public class PutProductTest extends TestBase{
     }
 
     @Test
-    public void shouldReturnSuccessAndStatus201() {
+    public void shouldReturnSuccessAndStatus201ToRegistSuccessfully() {
         putProductRequest(SPEC, user, product3).
                 then().
                 assertThat().
@@ -62,7 +62,7 @@ public class PutProductTest extends TestBase{
     }
 
     @Test
-    public void shouldReturnErrorAndStatus400() {
+    public void shouldReturnErrorAndStatus400ToAlreadyExistAProductWithThisName() {
         postProductRequest(SPEC, user, product2);
         putProductRequest(SPEC, user, product2).
                 then().
@@ -72,7 +72,7 @@ public class PutProductTest extends TestBase{
     }
 
     @Test
-    public void shouldReturnErrorAndStatus401() {
+    public void shouldReturnErrorAndStatus401ToUnexistingInvalidOrExpiredToken() {
         userNotAuthenticated.setUserAuthToken("testing invalid token");
         putProductRequest(SPEC, userNotAuthenticated, product)
                 .then()
@@ -82,7 +82,7 @@ public class PutProductTest extends TestBase{
     }
 
     @Test
-    public void shouldReturnErrorAndStatus403() {
+    public void shouldReturnErrorAndStatus403ToExclusiveRouteForAdmins() {
         putProductRequest(SPEC, notAdminUser, product2)
                 .then()
                 .assertThat()

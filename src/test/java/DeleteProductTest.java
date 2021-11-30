@@ -41,7 +41,7 @@ public class DeleteProductTest extends TestBase {
     }
 
     @Test
-    public void shouldRemoveProductReturnSuccessMessageAndStatus200() {
+    public void shouldRemoveProductReturnSuccessMessageAndStatus200ToProductDeletedSuccessfully() {
         Response deleteProductRequest = deleteProductRequest(SPEC, validUser, validProduct);
         deleteProductRequest.
                 then().
@@ -51,7 +51,7 @@ public class DeleteProductTest extends TestBase {
     }
 
     @Test
-    public void shouldRemoveProductReturnErrorMessageAndStatus403() {
+    public void shouldRemoveProductReturnErrorMessageAndStatus403ToRouteExclusiveForAdmins() {
         Response deleteProductRequest = deleteProductRequest(SPEC, notAdminUser, validProduct);
         deleteProductRequest.
                 then().
@@ -61,7 +61,7 @@ public class DeleteProductTest extends TestBase {
      }
 
     @Test
-    public void shouldRemoveProductReturnErrorMessageAndStatus401() {
+    public void shouldRemoveProductReturnErrorMessageAndStatus401ToUnexistingInvalidOrExpiredToken() {
         Response deleteProductRequest = deleteProductRequest(SPEC, userNotAuthenticated, validProduct);
         deleteProductRequest.
                 then().
