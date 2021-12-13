@@ -9,36 +9,23 @@ import org.testng.annotations.DataProvider;
 
 public class GetUserTests extends TestBase {
 
-    private User validUser1;
-    private User validUser2;
-    private User validUser3;
-    private User invalidUser1;
+    private User user;
 
     @BeforeClass
     public void generateTestData() {
-        validUser1 = new User("Dereck Portela", "dereck@email.com", "123abc", "true");
-        registerUserRequest(SPEC, validUser1);
-        validUser2 = new User("Thamires Neves", "thamires@email.com", "123abc", "true");
-        registerUserRequest(SPEC, validUser2);
-        validUser3 = new User("Maria", "mariasilva@email.com", "lalala123", "false");
-        registerUserRequest(SPEC, validUser3);
-        invalidUser1 = new User("Wenddell", "wenddell@email.com", "minhasenha", "0");
+        user = new User("Dereck Portela", "dereck@email.com", "123abc", "true");
+        registerUserRequest(SPEC, user);
     }
 
     @AfterClass
     public void removeTestData() {
-        deleteUserRequest(SPEC, validUser1);
-        deleteUserRequest(SPEC, validUser2);
-        deleteUserRequest(SPEC, validUser3);
+        deleteUserRequest(SPEC, user);
     }
 
     @DataProvider(name = "usersData")
     public Object[][] createTestData() {
         return new Object[][] {
-                {"?nome=" + validUser1.name, 1},
-                {"?password=" + validUser2.password, 2},
-                {"?email=" + validUser3.email, 1},
-                {"?nome=" + invalidUser1.name + "&email=" + invalidUser1.email, 0}
+                {"?nome=" + user.name, 1},
         };
     }
 

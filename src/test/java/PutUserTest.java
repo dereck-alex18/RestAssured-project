@@ -9,27 +9,28 @@ import static requests.UserEndpoint.*;
 
 public class PutUserTest extends TestBase {
 
-    private User validUser, notRegisteredUser, validUser2;
+    private User user, notRegisteredUser, user2;
 
     @BeforeClass
     public void generateTestData() {
-        validUser = new User("Joaquina", "joaquina@email.com", "123abc", "true");
-        registerUserRequest(SPEC, validUser);
+        user = new User("Joaquina", "joaquina@email.com", "123abc", "true");
+        registerUserRequest(SPEC, user);
+        user2 = new User("Joaquina", "joaquina@email.com", "minhasenha8983", "false");
+        registerUserRequest(SPEC, user2);
         notRegisteredUser = new User("Betania", "betania@email.com", "minhasenha123", "true");
-        validUser2 = new User("Joaquina", "joaquina@email.com", "minhasenha8983", "false");
-        registerUserRequest(SPEC, validUser2);
     }
 
     @AfterClass
     public void removeTestData(){
-        deleteUserRequest(SPEC, validUser);
+        deleteUserRequest(SPEC, user);
+        deleteUserRequest(SPEC, user2);
+        registerUserRequest(SPEC, notRegisteredUser);
         deleteUserRequest(SPEC, notRegisteredUser);
-        deleteUserRequest(SPEC, validUser2);
     }
 
     @Test
-    public void shouldReturnSuccessMessageAndStatus200ToUpdateSuccessfull() {
-        putUserRequest(SPEC, validUser).
+    public void shouldReturnSuccessMessageAndStatus200ToUpdateSuccessfully() {
+        putUserRequest(SPEC, user).
                 then().
                 assertThat().
                 statusCode(200).
@@ -37,7 +38,7 @@ public class PutUserTest extends TestBase {
     }
 
     @Test
-    public void shouldReturnSuccessMessageAndStatus201ToRegistSuccessfully() {
+    public void shouldReturnSuccessMessageAndStatus201ToRegisterSuccessfully() {
         putUserRequest(SPEC, notRegisteredUser).
                 then().
                 assertThat().
@@ -47,7 +48,7 @@ public class PutUserTest extends TestBase {
 
     @Test
     public void shouldReturnErrorMessageAndStatus400ToEmailAlreadyInUse() {
-        putUserRequest(SPEC, validUser2).
+        putUserRequest(SPEC, user2).
                 then().
                 assertThat().
                 statusCode(400).

@@ -11,17 +11,17 @@ import static requests.UserEndpoint.*;
 
 public class DeleteProductTest extends TestBase {
 
-    private User validUser, notAdminUser, userNotAuthenticated;
-    private Product validProduct;
+    private User user, notAdminUser, userNotAuthenticated;
+    private Product product;
 
 
     @BeforeClass
     public void generateTestData() {
-        validUser = new User("Alexander", "alex@test.com", "1234", "true");
-        validProduct = new Product("iPhone 11", 4000, "8gb ram, 128gb storage", 100);
-        registerUserRequest(SPEC, validUser);
-        authenticateUserRequest(SPEC, validUser);
-        postProductRequest(SPEC, validUser, validProduct);
+        user = new User("Alexander", "alex@test.com", "1234", "true");
+        product = new Product("iPhone 12", 4000, "8gb ram, 128gb storage", 100);
+        registerUserRequest(SPEC, user);
+        authenticateUserRequest(SPEC, user);
+        postProductRequest(SPEC, user, product);
 
         notAdminUser = new User("Pedro", "pedro@test.com", "1234", "false");
         registerUserRequest(SPEC, notAdminUser);
@@ -35,14 +35,14 @@ public class DeleteProductTest extends TestBase {
 
     @AfterClass
     public void removeTestData() {
-        deleteUserRequest(SPEC, validUser);
+        deleteUserRequest(SPEC, user);
         deleteUserRequest(SPEC, notAdminUser);
         deleteUserRequest(SPEC, userNotAuthenticated);
     }
 
     @Test
     public void shouldRemoveProductReturnSuccessMessageAndStatus200ToProductDeletedSuccessfully() {
-        Response deleteProductRequest = deleteProductRequest(SPEC, validUser, validProduct);
+        Response deleteProductRequest = deleteProductRequest(SPEC, user, product);
         deleteProductRequest.
                 then().
                 assertThat().
@@ -51,8 +51,8 @@ public class DeleteProductTest extends TestBase {
     }
 
     @Test
-    public void shouldRemoveProductReturnErrorMessageAndStatus403ToRouteExclusiveForAdmins() {
-        Response deleteProductRequest = deleteProductRequest(SPEC, notAdminUser, validProduct);
+    public void shouldNotRemoveProductReturnErrorMessageAndStatus403ToRouteExclusiveForAdmins() {
+        Response deleteProductRequest = deleteProductRequest(SPEC, notAdminUser, product);
         deleteProductRequest.
                 then().
                 assertThat().
@@ -61,15 +61,14 @@ public class DeleteProductTest extends TestBase {
      }
 
     @Test
-    public void shouldRemoveProductReturnErrorMessageAndStatus401ToUnexistingInvalidOrExpiredToken() {
-        Response deleteProductRequest = deleteProductRequest(SPEC, userNotAuthenticated, validProduct);
+    public void shouldNotRemoveProductReturnErrorMessageAndStatus401ToNonexistentInvalidOrExpiredToken() {
+        Response deleteProductRequest = deleteProductRequest(SPEC, userNotAuthenticated, product);
         deleteProductRequest.
                 then().
                 assertThat().
                 statusCode(401).
                 body("message", equalTo(Constants.INVALID_TOKEN));
     }
-
 }
 
 

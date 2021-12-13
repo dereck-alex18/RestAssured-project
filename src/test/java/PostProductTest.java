@@ -34,15 +34,15 @@ public class PostProductTest extends TestBase {
     }
 
     @AfterClass
-    public void deleteProduct(){
+    public void deleteProduct() {
+        deleteProductRequest(SPEC, user, product);
         deleteUserRequest(SPEC, user);
         deleteUserRequest(SPEC, notAdminUser);
         deleteUserRequest(SPEC, userNotAuthenticated);
-        deleteProductRequest(SPEC, user, product);
     }
 
     @Test
-    public void shouldReturnSuccessfulMessageAndStatus201ToRegistSuccessfully() {
+    public void shouldReturnSuccessfulMessageAndStatus201ToRegisterSuccessfully() {
         postProductRequest(SPEC, user, product).
             then()
                 .assertThat()
@@ -69,7 +69,7 @@ public class PostProductTest extends TestBase {
     }
 
     @Test
-    public void shouldReturnFailMessageAndStatus401ToUnexistingInvalidOrExpiredToken() {
+    public void shouldReturnFailMessageAndStatus401ToNonexistentInvalidOrExpiredToken() {
         userNotAuthenticated.setUserAuthToken("testing invalid token");
         postProductRequest(SPEC, userNotAuthenticated, product2)
             .then()
