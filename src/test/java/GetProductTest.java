@@ -21,16 +21,13 @@ public class GetProductTest extends TestBase {
         user = new User ("Dereck", "dereck@test.com", "12345", "true");
         registerUserRequest(SPEC, user);
         authenticateUserRequest(SPEC, user);
-        product = new Product ("iPhone 12", 4000, "16gb ram, 128gb storage", 500);
+        product = new Product ("iPhone 13", 4000, "16gb ram, 128gb storage", 500);
         postProductRequest(SPEC, user, product);
-        product2 = new Product ("iPhone 13", 4000, "16gb ram, 128gb storage", 500);
-        postProductRequest(SPEC, user, product2);
     }
 
     @AfterClass
     public void removeTestData() {
         deleteProductRequest(SPEC, user, product);
-        deleteProductRequest(SPEC, user, product2);
         deleteUserRequest(SPEC, user);
     }
 
@@ -38,10 +35,7 @@ public class GetProductTest extends TestBase {
     @DataProvider(name = "product")
     public Object[][] createTestData() {
         return new Object[][] {
-                {"?nome=" + product2.name, 1},
-                {"?preco=" + product2.price, 2},
-                {"?descricao=" + product.descricao, 2},
-                {"?quantidade=" + product.quantidade, 2}
+                {"?nome=" + product.name, 1},
         };
     }
 
